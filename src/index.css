@@ -205,6 +205,31 @@ input:focus {
   color: var(--text);
 }
 .header .icon-button:active { background: var(--surface-active); }
+.header-unpair {
+  height: 34px;
+  min-width: 76px;
+  padding: 0 12px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+.header-unpair.confirming {
+  color: var(--danger);
+  border-color: rgba(255, 59, 48, 0.6);
+  background: rgba(255, 59, 48, 0.14);
+}
+.header-unpair:active {
+  background: rgba(255, 59, 48, 0.18);
+  border-color: var(--danger);
+}
 
 /* Tabs */
 
@@ -266,19 +291,6 @@ input:focus {
   color: var(--danger);
 }
 .quick-panic:active {
-  background: rgba(255, 59, 48, 0.18);
-  border-color: var(--danger);
-}
-.quick-unpair {
-  min-width: 82px;
-  color: var(--muted);
-}
-.quick-unpair.confirming {
-  color: var(--danger);
-  border-color: rgba(255, 59, 48, 0.55);
-  background: rgba(255, 59, 48, 0.12);
-}
-.quick-unpair:active {
   background: rgba(255, 59, 48, 0.18);
   border-color: var(--danger);
 }

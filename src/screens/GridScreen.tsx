@@ -172,6 +172,13 @@ export function GridScreen() {
           <Clock />
         </div>
         <div className="header-right">
+          <button
+            className={`header-unpair${confirmUnpair ? ' confirming' : ''}`}
+            onClick={handleUnpair}
+            aria-label={confirmUnpair ? 'Confirm unpair' : 'Unpair device'}
+          >
+            {confirmUnpair ? 'Confirm' : 'Unpair'}
+          </button>
           {pageCount > 1 && (
             <>
               <button
@@ -219,14 +226,6 @@ export function GridScreen() {
           <button className="quick-button" onClick={refreshCatalog} aria-label="Refresh catalog">
             <span className="quick-glyph">↻</span>
             <span>Refresh</span>
-          </button>
-          <button
-            className={`quick-button quick-unpair${confirmUnpair ? ' confirming' : ''}`}
-            onClick={handleUnpair}
-            aria-label={confirmUnpair ? 'Confirm unpair' : 'Unpair device'}
-          >
-            <span className="quick-glyph">×</span>
-            <span>{confirmUnpair ? 'Confirm' : 'Unpair'}</span>
           </button>
         </div>
       </div>
