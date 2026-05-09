@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <mask id="stream-wordmark-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024">
+    <rect width="1024" height="1024" style="fill:#fff"/>
+    <text
+      x="512"
+      y="470"
+      text-anchor="middle"
+      dominant-baseline="middle"
+      style="fill:#000;font-family:'Outfit','Inter',Arial,sans-serif;font-weight:900;font-size:140px;letter-spacing:-0.05em"
+    >stream!</text>
+  </mask>
+  <path
+    mask="url(#stream-wordmark-cutout)"
+    fill="currentColor"
+    d="M512 916L451.75 861.12C236.8 666.16 96 538.56 96 382.4C96 254.8 196.4 154.4 324 154.4C396 154.4 465.2 187.6 512 240.8C558.8 187.6 628 154.4 700 154.4C827.6 154.4 928 254.8 928 382.4C928 538.56 787.2 666.16 572.25 861.12L512 916Z"
+  />
+</svg>

@@ -1,0 +1,20 @@
+{
+  "id": "ilystream",
+  "isWebApp": true,
+  "requires": [],
+  "label": "ilyStream",
+  "version": "0.0.1",
+  "description": "Soundboard and stream-deck remote for ilyStream — fire sounds and deck actions from your Car Thing.",
+  "author": "ilydrw",
+  "platforms": ["windows", "macos", "linux"],
+  "homepage": "https://github.com/ilydrw/ilystream-deskthing",
+  "repository": "https://github.com/ilydrw/ilystream-deskthing",
+  "tags": ["streaming", "soundboard"],
+  "requiredVersions": {
+    "server": ">=0.11.13",
+    "client": ">=0.11.2"
+  },
+  "updateUrl": "https://github.com/ilydrw/ilystream-deskthing",
+  "server": "dist/server/index.js",
+  "client": "dist/client/index.html"
+}
