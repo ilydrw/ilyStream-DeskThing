@@ -19,7 +19,7 @@ import {
 } from './handlers/desktop-settings.js'
 import { registerDeskThingScaffolding } from './setup.js'
 
-const APP_VERSION = '0.0.4'
+const APP_VERSION = '0.0.5'
 const logger = createLogger('server')
 
 const runtime = createRuntimeState()
