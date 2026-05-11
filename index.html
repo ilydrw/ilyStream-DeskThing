@@ -8,7 +8,12 @@
   <meta http-equiv="Expires" content="0" />
   <title>ilyStream</title>
   <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-  <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+  <!-- Pinned to 15.1.0 — `@latest` was pulling a build whose regex split
+       newer ZWJ sequences (family / pride flag / skin-toned compounds) into
+       multiple <img> tags pointing at non-existent SVGs. Keep the JS version
+       and the asset version (in src/lib/emoji.tsx) matched. Only loaded for
+       the Car Thing / old-Chromium fallback path; modern browsers skip it. -->
+  <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <div id="root"></div>

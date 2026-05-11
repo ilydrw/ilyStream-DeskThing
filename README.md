@@ -44,3 +44,8 @@ PC, holds the long-lived API token, and proxies all calls to ilyStream's `/api/v
 Step 1 (LAN endpoints + pair UI) lives in ilyStream itself. This repo is step 2 — the device
 client. The companion supports pairing, unpairing, catalog refresh, soundboard/deck actions, live
 state, stream stats, chat, and recent sounds.
+
+## 0.0.5 maintenance
+
+- Hardened the live event bridge with bounded SSE buffering, CRLF frame handling, and cleaner reader/abort teardown.
+- Kept the companion aligned with the ilyStream studio health pass so device control remains reliable during longer local-first streams.

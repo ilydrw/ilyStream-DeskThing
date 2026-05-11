@@ -11,6 +11,7 @@ interface StartParams {
 
 const RECONNECT_DELAY_MS = 3_000
 const MAX_BACKOFF_MS = 30_000
+const MAX_BUFFER_CHARS = 256_000
 
 /**
  * Consumes ilyStream's `/api/v1/events` SSE channel from Node.
@@ -66,6 +67,7 @@ export class IlyStreamEventStream {
     const url = `${withScheme}/api/v1/events`
     const abort = new AbortController()
     this.abort = abort
+    let reader: ReadableStreamDefaultReader<Uint8Array> | null = null
 
     try {
       const response = await fetch(url, {
@@ -84,14 +86,17 @@ export class IlyStreamEventStream {
       this.onStateChange?.(true)
       this.backoff = RECONNECT_DELAY_MS
 
-      const reader = response.body.getReader()
+      reader = response.body.getReader()
       const decoder = new TextDecoder()
       let buffer = ''
 
       while (!this.stopped) {
         const { done, value } = await reader.read()
         if (done) break
-        buffer += decoder.decode(value, { stream: true })
+        buffer += decoder.decode(value, { stream: true }).replace(/\r\n/g, '\n')
+        if (buffer.length > MAX_BUFFER_CHARS) {
+          throw new Error('SSE buffer exceeded safety limit')
+        }
 
         // SSE frames are separated by a blank line (\n\n).
         let separatorIndex
@@ -110,6 +115,9 @@ export class IlyStreamEventStream {
       this.logger.warn('Event stream error:', message)
       this.onStateChange?.(false, message)
       this.scheduleReconnect()
+    } finally {
+      try { reader?.releaseLock() } catch {}
+      if (this.abort === abort) this.abort = null
     }
   }
 

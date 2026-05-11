@@ -1,6 +1,6 @@
 {
   "name": "ilystream-deskthing",
-  "version": "0.0.5",
+  "version": "0.0.7-dev",
   "description": "Spotify Car Thing client for ilyStream — soundboard and stream-deck remote",
   "type": "module",
   "scripts": {

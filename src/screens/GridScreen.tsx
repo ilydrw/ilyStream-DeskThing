@@ -162,7 +162,7 @@ export function GridScreen() {
     <>
       <div className="header">
         <div className="header-left">
-          <div className="title">ilyStream</div>
+          <div className="title kicker">ilyStream</div>
           <div className="subtitle">
             {status.host}
             {pageCount > 1 ? ` · page ${currentPage + 1}/${pageCount}` : ''}
@@ -179,24 +179,6 @@ export function GridScreen() {
           >
             {confirmUnpair ? 'Confirm' : 'Unpair'}
           </button>
-          {pageCount > 1 && (
-            <>
-              <button
-                className="icon-button"
-                onClick={() => setPage((p) => (p - 1 + pageCount) % pageCount)}
-                aria-label="Previous page"
-              >
-                ‹
-              </button>
-              <button
-                className="icon-button"
-                onClick={() => setPage((p) => (p + 1) % pageCount)}
-                aria-label="Next page"
-              >
-                ›
-              </button>
-            </>
-          )}
         </div>
       </div>
 
@@ -240,7 +222,7 @@ export function GridScreen() {
         <div className="board-area" ref={gridScrollRef}>
           {isBoard && recents.length > 0 && (
             <div className="recents-row" aria-label="Recently played">
-              <div className="recents-label">Recents</div>
+              <div className="recents-label kicker">Recently Played</div>
               <div className="recents-grid">
                 {recents.map((sound) => (
                   <Tile
@@ -253,6 +235,7 @@ export function GridScreen() {
               </div>
             </div>
           )}
+
           <div className="grid">
             {slots.length === 0 ? (
               <div className="empty">
