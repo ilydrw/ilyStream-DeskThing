@@ -3,7 +3,7 @@
   "isWebApp": true,
   "requires": [],
   "label": "ilyStream",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Soundboard and stream-deck remote for ilyStream — fire sounds and deck actions from your Car Thing.",
   "author": "ilydrw",
   "platforms": ["windows", "macos", "linux"],
