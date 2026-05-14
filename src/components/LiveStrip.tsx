@@ -14,7 +14,13 @@ import { Emoji } from '../lib/emoji'
  * EventOrchestrator.handleDeckAction.
  */
 export function LiveStrip() {
-  const { recentSound, tts, nowPlaying, status, goals, runAction } = useAppState()
+  const { recentSound, tts, nowPlaying, status, goals, recording, runAction } = useAppState()
+
+  const recordingIndicator = recording.isRecording && (
+    <div className="strip-recording" title={recording.path}>
+      <span className="dot" /> REC
+    </div>
+  )
 
   if (recentSound) {
     return (
@@ -24,6 +30,7 @@ export function LiveStrip() {
           <div className="strip-title">Played</div>
           <div className="strip-sub">{recentSound.name}</div>
         </div>
+        {recordingIndicator}
       </div>
     )
   }
@@ -36,6 +43,7 @@ export function LiveStrip() {
           <div className="strip-title">{tts.isAI ? 'AI co-host speaking' : 'TTS speaking'}</div>
           <div className="strip-sub">Tap any tile to fire over the top</div>
         </div>
+        {recordingIndicator}
       </div>
     )
   }
@@ -74,6 +82,7 @@ export function LiveStrip() {
             ♥
           </button>
         </div>
+        {recordingIndicator}
         {goals && goals.currentViewerCount > 0 && (
           <div className="strip-meta">{goals.currentViewerCount.toLocaleString()} 👀</div>
         )}
@@ -89,6 +98,7 @@ export function LiveStrip() {
           <div className="strip-title">Reconnecting live state…</div>
           <div className="strip-sub">Sounds will still play</div>
         </div>
+        {recordingIndicator}
       </div>
     )
   }
@@ -101,6 +111,20 @@ export function LiveStrip() {
           <div className="strip-title">Live</div>
           <div className="strip-sub">{goals.currentViewerCount.toLocaleString()} viewers</div>
         </div>
+        {recordingIndicator}
+      </div>
+    )
+  }
+
+  if (recording.isRecording) {
+    return (
+      <div className="strip strip-recording-only">
+        <div className="strip-glyph"><Emoji text="🎥" /></div>
+        <div className="strip-text">
+          <div className="strip-title">Recording</div>
+          <div className="strip-sub">Saving to PC</div>
+        </div>
+        {recordingIndicator}
       </div>
     )
   }

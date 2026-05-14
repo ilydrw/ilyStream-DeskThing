@@ -61,7 +61,7 @@ export async function registerDeskThingScaffolding(context: ServerAppContext): P
   await DeskThing.tasks.initTasks({
     [TASK_ID]: {
       id: TASK_ID,
-      version: '0.0.5',
+      version: '0.0.8',
       available: true,
       completed: !!context.runtime.token,
       label: 'Pair with ilyStream',
@@ -113,7 +113,7 @@ export async function registerDeskThingScaffolding(context: ServerAppContext): P
   })
 
   // Tiny utility actions — show up in DeskThing's actions panel.
-  const actionDefaults = { version: '0.0.5', enabled: true, tag: 'basic' as const }
+  const actionDefaults = { version: '0.0.8', enabled: true, tag: 'basic' as const }
   DeskThing.registerAction({
     id: ACTION_RESET_PAIR,
     name: 'Reset Pairing',

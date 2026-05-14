@@ -154,6 +154,7 @@ export type ServerMessageMap = {
   chatAppend: ChatItem
   /** User-tunable display config (clock format, etc). */
   appConfig: AppConfig
+  recordingState: { isRecording: boolean; path?: string }
   /** PC wall-clock sync so the device display does not depend on Car Thing time or timezone. */
   timeSync: {
     now: string

@@ -19,7 +19,7 @@ import {
 } from './handlers/desktop-settings.js'
 import { registerDeskThingScaffolding } from './setup.js'
 
-const APP_VERSION = '0.0.5'
+const APP_VERSION = '0.0.8'
 const logger = createLogger('server')
 
 const runtime = createRuntimeState()
@@ -37,7 +37,8 @@ const FORWARDED_EVENTS = new Set<ServerMessageType>([
   'soundPlayed',
   'goals',
   'chatBacklog',
-  'chatAppend'
+  'chatAppend',
+  'recordingState'
 ])
 
 const context: ServerAppContext = {

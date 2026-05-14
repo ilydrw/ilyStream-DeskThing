@@ -30,6 +30,7 @@ interface AppStateValue {
   goals: GoalsState | null
   /** Most recent sound played within the last few seconds (cleared automatically). */
   recentSound: SoundPlayedState | null
+  recording: { isRecording: boolean; path?: string }
   /** Recent chat-feed items, oldest first. Capped to a small window for the device. */
   chat: ChatItem[]
   /** User-tunable display config (header clock format, etc). */
@@ -74,6 +75,9 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const [tts, setTts] = useState<TtsState>(INITIAL_TTS)
   const [goals, setGoals] = useState<GoalsState | null>(null)
   const [recentSound, setRecentSound] = useState<SoundPlayedState | null>(null)
+  const [recording, setRecording] = useState<{ isRecording: boolean; path?: string }>({
+    isRecording: false
+  })
   const [chat, setChat] = useState<ChatItem[]>([])
   const [appConfig, setAppConfig] = useState<AppConfig>(INITIAL_APP_CONFIG)
   const [clockSync, setClockSync] = useState<ClockSync | null>(null)
@@ -108,6 +112,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         showSeconds: !!payload?.showSeconds
       })
     })
+    const unsubRecording = onServerMessage('recordingState', (payload) => setRecording(payload))
     const unsubTimeSync = onServerMessage('timeSync', (payload) => {
       const wallClock = payload?.wallClock
       if (
@@ -140,6 +145,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       unsubChatBacklog()
       unsubChatAppend()
       unsubAppConfig()
+      unsubRecording()
       unsubTimeSync()
     }
   }, [])
@@ -172,6 +178,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       tts,
       goals,
       recentSound,
+      recording,
       chat,
       appConfig,
       clockSync,
@@ -185,7 +192,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       },
       runAction: (type) => sendToServer('runAction', { type })
     }),
-    [status, catalog, notice, nowPlaying, tts, goals, recentSound, chat, appConfig, clockSync]
+    [status, catalog, notice, nowPlaying, tts, goals, recentSound, recording, chat, appConfig, clockSync]
   )
 
   return <AppStateContext.Provider value={value}>{children}</AppStateContext.Provider>
